@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -137,8 +138,6 @@ public class MyTranscript extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				// Application path
 				String report = null;
 				try {
 					report = new File(".").getCanonicalPath()+ "\\Source2\\Grade.jrxml";
