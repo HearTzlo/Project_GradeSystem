@@ -235,7 +235,7 @@ class StudentGradePage extends JFrame implements ActionListener {
         btnNewButton_1.setBounds(30, 202, 145, 30);
         getContentPane().add(btnNewButton_1);
         
-        JLabel lblNewLabel_3 = new JLabel("แสดงผลการศึกษา");
+        JLabel lblNewLabel_3 = new JLabel("แสดงผลการเรียน");
         lblNewLabel_3.setForeground(Color.WHITE);
         lblNewLabel_3.setFont(new Font("Angsana New", Font.BOLD, 40));
         lblNewLabel_3.setBounds(712, 18, 316, 47);
@@ -263,12 +263,11 @@ class StudentGradePage extends JFrame implements ActionListener {
 		table.setFont(new Font("Angsana New",Font.BOLD,26));
         scrollPane.setViewportView(table);
         
-        JButton btnGrade = new JButton("ผลการศึกษา");
+        JButton btnGrade = new JButton("ผลการเรียน");
         btnGrade.setFont(new Font("Angsana New", Font.BOLD, 34));
         btnGrade.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent ae) {
-        		 String str = ae.getActionCommand();
-     	        if (str.equals("ผลการศึกษา")) {
+    
      	            try {
      	                Class.forName("com.mysql.jdbc.Driver");
      	                conn = DriverManager.getConnection("jdbc:mysql://localhost/project_gradesystem" +
@@ -291,9 +290,6 @@ class StudentGradePage extends JFrame implements ActionListener {
      	            } catch (Exception ex) {
      	                ex.printStackTrace();
      	                JOptionPane.showMessageDialog(null, "ERROR CLOSE");
-     	            }
-     	            
-     	            
      	        }
      	    }
      });
@@ -312,13 +308,10 @@ class StudentGradePage extends JFrame implements ActionListener {
         btnLogout.setBounds(30, 611, 145, 32);
         getContentPane().add(btnLogout);
         
-        JButton ShowL = new JButton("แสดงผลทั้งหมด");
+        JButton ShowL = new JButton("แสดงผลการเรียน");
         ShowL.setFont(new Font("Angsana New", Font.BOLD, 34));
         ShowL.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		String str = e.getActionCommand();
-        		
-         	   if (str.equals("แสดงผลทั้งหมด")) {
          		try {
          			 Class.forName("com.mysql.jdbc.Driver");
          	            con = DriverManager.getConnection("jdbc:mysql://localhost/project_gradesystem" +
@@ -334,7 +327,7 @@ class StudentGradePage extends JFrame implements ActionListener {
          		}catch(Exception ex) {
          			ex.printStackTrace();
          		}
-         	   }
+         	   
          	}
          });
         ShowL.setBounds(414, 767, 246, 49);

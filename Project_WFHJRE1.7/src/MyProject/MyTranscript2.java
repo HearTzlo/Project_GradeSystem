@@ -38,7 +38,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-public class MyTranscript extends JFrame {
+public class MyTranscript2 extends JFrame {
 	
 	private JTextField txtStudentCode;
 
@@ -48,7 +48,7 @@ public class MyTranscript extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				MyTranscript frame = new MyTranscript();
+				MyTranscript2 frame = new MyTranscript2();
 				frame.setVisible(true);
 			}
 		});
@@ -58,7 +58,7 @@ public class MyTranscript extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MyTranscript() {
+	public MyTranscript2() {
 		getContentPane().setForeground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0,0,2000,1000);
@@ -98,7 +98,7 @@ public class MyTranscript extends JFrame {
 		btnNewButton.setBounds(20, 235, 132, 36);
 		getContentPane().add(btnNewButton);
 		
-		JLabel lblNewLabel_4 = new JLabel("จัดพิมพ์เอกสารผลการเรียน");
+		JLabel lblNewLabel_4 = new JLabel("จัดพิมพ์เอกสารผลการศึกษา");
 		lblNewLabel_4.setForeground(Color.WHITE);
 		lblNewLabel_4.setFont(new Font("Angsana New", Font.BOLD, 40));
 		lblNewLabel_4.setBounds(936, 22, 402, 46);
@@ -245,7 +245,7 @@ public class MyTranscript extends JFrame {
 		 mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
 					String un = lblNewLabel_5.getText();
-					MyTranscript trans = new MyTranscript();
+					MyTranscript2 trans = new MyTranscript2();
 					trans.MyTranscript(un);
 					trans.setVisible(true);
 					dispose();
