@@ -7,10 +7,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -22,12 +19,8 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.swing.JRViewer;
-import net.sf.jasperreports.view.JasperViewer;
 import net.sf.jasperreports.engine.util.ClassUtils;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -36,7 +29,6 @@ import java.awt.Color;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 
 public class MyTranscript extends JFrame {
 	
@@ -98,7 +90,7 @@ public class MyTranscript extends JFrame {
 		btnNewButton.setBounds(20, 235, 132, 36);
 		getContentPane().add(btnNewButton);
 		
-		JLabel lblNewLabel_4 = new JLabel("จัดพิมพ์เอกสารผลการเรียน");
+		JLabel lblNewLabel_4 = new JLabel("จัดพิมพ์เอกสารผลการศึกษา");
 		lblNewLabel_4.setForeground(Color.WHITE);
 		lblNewLabel_4.setFont(new Font("Angsana New", Font.BOLD, 40));
 		lblNewLabel_4.setBounds(936, 22, 402, 46);
@@ -145,23 +137,37 @@ public class MyTranscript extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				try {		
-					String path =  ".//Source2/Grade.jrxml";
-					InputStream file = new FileInputStream(new File(path));
+				
+				// Application path
+				String report = null;
+				try {
+					report = new File(".").getCanonicalPath()+ "\\Grade.jrxml";
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				try {
+					
 					// Parameters
 					Map<String, Object> param = new HashMap<String, Object>();
-					param.put("sStd_Code", txtStudentCode.getText());			
+					param.put("sStd_Code", txtStudentCode.getText());
+					
 					// Report Viewer
-					JasperDesign  jsdesign = JRXmlLoader.load(file);
-					JasperReport ir = JasperCompileManager.compileReport(jsdesign);
+					JasperReport ir = JasperCompileManager.compileReport(report);
 					JasperPrint ip = JasperFillManager.fillReport(ir, param,connect);
-					JasperViewer.viewReport(ip,false);
-				}catch(JRException e1) {
-					JOptionPane.showMessageDialog(null,e1);
-				}catch(FileNotFoundException e2) {
-					JOptionPane.showMessageDialog(null, e2);
+					
+					JFrame frame = new JFrame();
+					frame.setTitle("Grade Report");
+					frame.setBounds(100, 100, 800,600);
+					frame.getContentPane().add(new JRViewer(ip));
+					frame.setVisible(true);
+					
+				} catch (JRException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-
+				
 				try {
 					connect.close();
 				} catch (SQLException e) {
