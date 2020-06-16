@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Grade" language="groovy" columnCount="2" pageWidth="595" pageHeight="842" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d8c5d34-b2b3-4df2-a15e-6ae77e718b7c">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="55"/>
 	<style name="table">
 		<box>
 			<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -432,21 +432,21 @@ WHERE
 	<detail>
 		<band height="22" splitType="Stretch">
 			<textField>
-				<reportElement x="225" y="0" width="17" height="20" uuid="05e94a19-fa61-43e6-b547-03c18a940da2"/>
+				<reportElement x="238" y="0" width="17" height="20" uuid="05e94a19-fa61-43e6-b547-03c18a940da2"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{grade_Gd_Grade}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="57" y="2" width="108" height="20" uuid="4daba41a-9357-49a6-8520-04b817a21268"/>
+				<reportElement x="70" y="0" width="108" height="20" uuid="4daba41a-9357-49a6-8520-04b817a21268"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{subject_Sub_Name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="168" y="0" width="40" height="20" uuid="db3d2427-292f-4d4d-9636-f547888e70ae"/>
+				<reportElement x="185" y="0" width="40" height="20" uuid="db3d2427-292f-4d4d-9636-f547888e70ae"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
