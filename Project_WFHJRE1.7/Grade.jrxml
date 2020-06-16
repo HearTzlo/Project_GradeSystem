@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Grade" language="groovy" columnCount="2" pageWidth="595" pageHeight="842" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d8c5d34-b2b3-4df2-a15e-6ae77e718b7c">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="51014d93-afd2-407e-a090-869e7b33af1d"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\nnnisa4016\\Documents\\Ireport\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sStd_Code" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     student.`Std_Code` AS student_Std_Code,
+     student.`Std_TNameTitle` AS student_Std_TNameTitle,
+     student.`Std_TName` AS student_Std_TName,
+     student.`Std_TSurname` AS student_Std_TSurname,
+     student.`Std_ENameTitle` AS student_Std_ENameTitle,
+     student.`Std_EName` AS student_Std_EName,
+     student.`Std_ESurname` AS student_Std_ESurname,
+     student.`Std_BDate` AS student_Std_BDate,
+     student.`Std_DateOfAttended` AS student_Std_DateOfAttended,
+     student.`Std_Status` AS student_Std_Status,
+     student.`Std_Degrees` AS student_Std_Degrees,
+     faculty.`Fac_Name` AS faculty_Fac_Name,
+     department.`Dep_Name` AS department_Dep_Name,
+     department.`Dep_Bachelor` AS department_Dep_Bachelor,
+     student.`Std_ID` AS student_Std_ID,
+     subject.`Sub_ID` AS subject_Sub_ID,
+     subject.`Sub_Name` AS subject_Sub_Name,
+     subject.`Sub_Credit` AS subject_Sub_Credit,
+     grade.`Std_Code` AS grade_Std_Code,
+     grade.`Sub_ID` AS grade_Sub_ID,
+     grade.`Semester_ID` AS grade_Semester_ID,
+     grade.`Year_ID` AS grade_Year_ID,
+     grade.`Gd_Grade` AS grade_Gd_Grade,
+     semester.`Semester_ID` AS semester_Semester_ID,
+     year.`Year_ID` AS year_Year_ID,
+     typeprogram.`Type_Program` AS typeprogram_Type_Program
+FROM
+     `faculty` faculty INNER JOIN `student` student ON faculty.`Fac_ID` = student.`Fac_ID`
+     INNER JOIN `department` department ON faculty.`Fac_ID` = department.`Fac_ID`
+     AND department.`Dep_ID` = student.`Dep_ID`
+     INNER JOIN `grade` grade ON student.`Std_Code` = grade.`Std_Code`
+     INNER JOIN `typeprogram` typeprogram ON student.`Type_Program` = typeprogram.`Type_Program`
+     INNER JOIN `subject` subject ON grade.`Sub_ID` = subject.`Sub_ID`
+     INNER JOIN `semester` semester ON grade.`Semester_ID` = semester.`Semester_ID`
+     INNER JOIN `year` year ON grade.`Year_ID` = year.`Year_ID`
+WHERE
+     student.std_code = $P{sStd_Code}]]>
+	</queryString>
+	<field name="student_Std_Code" class="java.lang.String"/>
+	<field name="student_Std_TNameTitle" class="java.lang.String"/>
+	<field name="student_Std_TName" class="java.lang.String"/>
+	<field name="student_Std_TSurname" class="java.lang.String"/>
+	<field name="student_Std_ENameTitle" class="java.lang.String"/>
+	<field name="student_Std_EName" class="java.lang.String"/>
+	<field name="student_Std_ESurname" class="java.lang.String"/>
+	<field name="student_Std_BDate" class="java.sql.Date"/>
+	<field name="student_Std_DateOfAttended" class="java.sql.Date"/>
+	<field name="student_Std_Status" class="java.lang.String"/>
+	<field name="student_Std_Degrees" class="java.lang.String"/>
+	<field name="faculty_Fac_Name" class="java.lang.String"/>
+	<field name="department_Dep_Name" class="java.lang.String"/>
+	<field name="department_Dep_Bachelor" class="java.lang.String"/>
+	<field name="student_Std_ID" class="java.lang.String"/>
+	<field name="subject_Sub_ID" class="java.lang.String"/>
+	<field name="subject_Sub_Name" class="java.lang.String"/>
+	<field name="subject_Sub_Credit" class="java.lang.Double"/>
+	<field name="grade_Std_Code" class="java.lang.String"/>
+	<field name="grade_Sub_ID" class="java.lang.String"/>
+	<field name="grade_Semester_ID" class="java.lang.String"/>
+	<field name="grade_Year_ID" class="java.lang.String"/>
+	<field name="grade_Gd_Grade" class="java.lang.Double"/>
+	<field name="semester_Semester_ID" class="java.lang.String"/>
+	<field name="year_Year_ID" class="java.lang.String"/>
+	<field name="typeprogram_Type_Program" class="java.lang.String"/>
+	<variable name="TotalCredit" class="java.lang.Double" resetType="Group" resetGroup="StudentID" calculation="Sum">
+		<variableExpression><![CDATA[$F{subject_Sub_Credit}]]></variableExpression>
+		<initialValueExpression><![CDATA[new java.math.BigDecimal(10.0)]]></initialValueExpression>
+	</variable>
+	<variable name="TotalGrade" class="java.lang.Float" resetType="Group" resetGroup="StudentID" calculation="Sum">
+		<variableExpression><![CDATA[$F{grade_Gd_Grade}*$F{subject_Sub_Credit}]]></variableExpression>
+		<initialValueExpression><![CDATA[new java.math.BigDecimal(10.0)]]></initialValueExpression>
+	</variable>
+	<variable name="AVG" class="java.lang.String">
+		<variableExpression><![CDATA[String.format("%.2f",($V{TotalGrade}.doubleValue()/ $V{TotalCredit}.doubleValue()))]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<group name="StudentID">
+		<groupExpression><![CDATA[$F{student_Std_Code}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Test">
+		<groupExpression><![CDATA[$F{year_Year_ID}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band height="21"/>
+		</groupFooter>
+	</group>
+	<group name="Term">
+		<groupExpression><![CDATA[$F{grade_Semester_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="44">
+				<textField>
+					<reportElement x="53" y="24" width="26" height="20" uuid="39dbd3a2-2b1e-471c-8814-2dc2b438bf51"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{grade_Year_ID}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="79" y="24" width="12" height="20" uuid="63d7deca-ee4f-4d42-89fc-22ff916cdcad"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[/]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="225" y="0" width="29" height="20" uuid="f5db22e0-3b75-4336-ae75-76b415f7cfe9"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[เกรด]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="24" width="53" height="20" uuid="048b2164-c87e-48cc-bc07-53e7139f723c"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ปีการศึกษา]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="91" y="24" width="11" height="20" uuid="62f47e9f-b719-4e74-8dc7-d6b287b51e0b"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{grade_Semester_ID}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="168" y="0" width="52" height="20" uuid="11bddbe0-24a4-49a3-a85f-6717bd960186"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[หน่วยกิจ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="37" height="20" uuid="42401d34-8256-44b0-a9b9-533c80710d98"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[รหัสวิชา]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="57" y="0" width="63" height="20" uuid="758fe767-04d3-4c64-9a51-37cba0ac7e92"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[ชื่อวิชา]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="39">
+				<staticText>
+					<reportElement x="4" y="0" width="39" height="20" uuid="78e599c0-66ec-473e-9b71-9679125faed1"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[คะแนน]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="46" y="0" width="43" height="20" uuid="44dfed4d-1241-487c-95a4-ee7b8b49b0fb"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TotalGrade}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="89" y="0" width="64" height="20" uuid="b3c6d0c5-5ac6-44d9-96d3-0c859f7eef52"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[หน่วยกิตรวม]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="153" y="0" width="36" height="20" uuid="fb49778d-f247-4f83-93c2-a130db6f3072"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TotalCredit}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="188" y="0" width="37" height="20" uuid="3e216e18-3c12-4ebb-b820-eec684cad0c2"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[เฉลี่ย:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="225" y="0" width="49" height="20" uuid="4e98a6b9-7b6f-44bf-ad2a-036d7311916b"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{AVG}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<textField>
+				<reportElement x="269" y="0" width="37" height="20" uuid="fae5e549-7ab1-4ce0-ba5f-3335c9fa466b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{student_Std_TNameTitle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="306" y="0" width="112" height="20" uuid="59aea7b6-b2a7-4522-ad6f-5e9b3762ab8d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{student_Std_TName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="418" y="0" width="137" height="20" uuid="3cdf9bfe-a09d-4e09-8686-2a1cfb6fa76c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{student_Std_TSurname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="269" y="20" width="37" height="20" uuid="873cd35f-c531-43a3-ad55-72a248a69192"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{student_Std_ENameTitle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="306" y="20" width="112" height="20" uuid="d89f05dc-2da9-4d53-b25b-67ff5e063725"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{student_Std_EName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="418" y="20" width="137" height="20" uuid="f75e7733-4250-46ad-95d7-e4ccd5ef0ce4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{student_Std_ESurname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="416" y="60" width="87" height="20" uuid="0e79a1fa-f8e3-471c-b65f-3ae6e77d9634"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{student_Std_ID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="269" y="40" width="73" height="20" uuid="248b729a-ff73-471c-9b39-af7b70e1b6fd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[รหัสประจำตัว]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="416" y="40" width="68" height="20" uuid="7bbccdda-219b-49a5-8dec-e18c823d6251"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[วันเข้าศึกษา]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="484" y="40" width="71" height="20" uuid="abe98e45-0816-472e-bfb7-a0f58f4a3f0d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{student_Std_DateOfAttended}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="40" width="74" height="20" uuid="1be30e53-71e1-47fc-baaa-33401cd6b0a4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{student_Std_Code}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="269" y="60" width="147" height="20" uuid="10798c25-2e18-45aa-85e5-b8dfd181b282"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[เลขบัตรประจำตัวประชาชน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="269" y="80" width="49" height="20" uuid="d257caa6-099d-49fe-9d0b-2153cd150c52"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[วันที่เกิด]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="318" y="80" width="98" height="20" uuid="25ced160-a546-43c3-ad57-8e414e473997"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{student_Std_BDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="416" y="80" width="87" height="20" uuid="d66ccf42-10ef-4bff-98a8-80b10d02086c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[วันที่พ้นสภาพ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="40" width="100" height="20" uuid="ab0caf25-ea55-4199-9344-59e7e02f2a64"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{faculty_Fac_Name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="43" y="40" width="46" height="20" uuid="2f4fb3f9-0050-444e-a988-4a5ca17d0298"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[คณะ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="60" width="46" height="20" uuid="c9316ce0-750b-4de5-a816-9fb2e9d24052"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[สาขาวิชา]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="60" width="106" height="20" uuid="2455e698-f092-49d9-845d-4b38dd8e1523"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{department_Dep_Name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="43" y="80" width="46" height="20" uuid="42308cb5-8277-4b23-bdfe-3a362178427d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[วิชาเอก]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="100" width="65" height="20" uuid="d78b6ce1-ce7d-488d-ae6b-502396454aee"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[ระดับการศึกษา]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="100" width="58" height="20" uuid="7666a842-8f5c-4c87-b961-b8e4ef017aba"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{department_Dep_Bachelor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="133" y="80" width="46" height="20" uuid="235afc3b-cc74-4b89-8930-738fc9e93911"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[วิชาโท]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="0" width="100" height="20" uuid="2827d277-c08b-424f-a2d0-57d41fd218f2"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[มหาวิทยาลัยขอนแก่น]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="18" width="100" height="20" uuid="ed775ae4-c0f0-4c50-bcbf-a15630b7d57d"/>
+				<textElement>
+					<font size="9" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Khon Kaen University]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="189" y="100" width="66" height="20" uuid="485bbd97-4afa-431b-897a-febf9a07e9a6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{typeprogram_Type_Program}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="225" y="0" width="17" height="20" uuid="05e94a19-fa61-43e6-b547-03c18a940da2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grade_Gd_Grade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="2" width="108" height="20" uuid="4daba41a-9357-49a6-8520-04b817a21268"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subject_Sub_Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="0" width="40" height="20" uuid="db3d2427-292f-4d4d-9636-f547888e70ae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subject_Sub_Credit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="2" width="53" height="20" uuid="5d32e7a9-82bf-457f-bf1f-d73dbeb66463"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grade_Sub_ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="11" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="530" y="0" width="25" height="20" uuid="91cefcd5-78a8-4bd5-b501-25d38f9f4ce0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="503" y="0" width="27" height="20" uuid="174073cc-88b0-4854-a668-a21886c09694"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Page]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="108" y="0" width="100" height="20" uuid="7d88176a-62b5-43ec-8b26-e25e60fd7589"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="46" y="0" width="62" height="20" uuid="50dd06ff-d169-4ff1-9939-ab01e53d7486"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[ให้ไว้ ณ วันที่]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>
