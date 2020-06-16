@@ -141,7 +141,7 @@ public class MyTranscript extends JFrame {
 				// Application path
 				String report = null;
 				try {
-					report = new File(".").getCanonicalPath()+ "\\Grade.jrxml";
+					report = new File(".").getCanonicalPath()+ "\\Source2\\Grade.jrxml";
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
