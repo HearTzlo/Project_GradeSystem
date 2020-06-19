@@ -146,11 +146,10 @@ public class MyTranscript2 extends JFrame {
 					e.printStackTrace();
 				}
 				try {		
-					String path =  ".//Source2/Grade.jrxml";
-					InputStream file = new FileInputStream(new File(path));
-					// Parameters
 					Map<String, Object> param = new HashMap<String, Object>();
-					param.put("sStd_Code", txtStudentCode.getText());			
+					param.put("sStd_Code", txtStudentCode.getText());	
+					InputStream file = getClass().getResourceAsStream("Grade.jrxml");
+					// Parameters	
 					// Report Viewer
 					JasperDesign  jsdesign = JRXmlLoader.load(file);
 					JasperReport ir = JasperCompileManager.compileReport(jsdesign);
@@ -158,8 +157,6 @@ public class MyTranscript2 extends JFrame {
 					JasperViewer.viewReport(ip,false);
 				}catch(JRException e1) {
 					JOptionPane.showMessageDialog(null,e1);
-				}catch(FileNotFoundException e2) {
-					JOptionPane.showMessageDialog(null, e2);
 				}
 
 				try {

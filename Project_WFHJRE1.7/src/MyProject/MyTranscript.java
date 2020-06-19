@@ -7,7 +7,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -19,8 +22,12 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.swing.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
 import net.sf.jasperreports.engine.util.ClassUtils;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -29,6 +36,7 @@ import java.awt.Color;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class MyTranscript extends JFrame {
 	
@@ -137,37 +145,20 @@ public class MyTranscript extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				// Application path
-				String report = null;
-				try {
-					report = new File(".").getCanonicalPath()+ "\\Grade.jrxml";
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-				try {
-					
-					// Parameters
+				try {		
 					Map<String, Object> param = new HashMap<String, Object>();
-					param.put("sStd_Code", txtStudentCode.getText());
-					
+					param.put("sStd_Code", txtStudentCode.getText());	
+					InputStream file = getClass().getResourceAsStream("Grade.jrxml");
+					// Parameters	
 					// Report Viewer
-					JasperReport ir = JasperCompileManager.compileReport(report);
+					JasperDesign  jsdesign = JRXmlLoader.load(file);
+					JasperReport ir = JasperCompileManager.compileReport(jsdesign);
 					JasperPrint ip = JasperFillManager.fillReport(ir, param,connect);
-					
-					JFrame frame = new JFrame();
-					frame.setTitle("Grade Report");
-					frame.setBounds(100, 100, 800,600);
-					frame.getContentPane().add(new JRViewer(ip));
-					frame.setVisible(true);
-					
-				} catch (JRException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JasperViewer.viewReport(ip,false);
+				}catch(JRException e1) {
+					JOptionPane.showMessageDialog(null,e1);
 				}
-				
+
 				try {
 					connect.close();
 				} catch (SQLException e) {
